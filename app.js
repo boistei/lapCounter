@@ -1,38 +1,64 @@
-let p1ScoreDisp = document.querySelector("#score1");
-let p2ScoreDisp = document.querySelector("#score2");
-let maxScore = document.querySelector("#maxScore");
+const counter = document.querySelector("#counter");
+const distance = document.querySelector("#distance");
 
-const p1Button = document.querySelector("#player1");
-const p2Button = document.querySelector("#player2");
+let count = 0;
+let dist = 0;
+
+const addQrtr = document.querySelector("#addQuarter");
+const addHalf = document.querySelector("#addHalf");
+const addFull = document.querySelector("#addFull");
+
+const remQrtr = document.querySelector("#remQuarter");
+const remHalf = document.querySelector("#remHalf");
+const remFull = document.querySelector("#remFull");
+
 const reset = document.querySelector("#reset");
-let p1Score = 0;
-let p2Score = 0;
 
-p1Button.addEventListener("click", (e) => {
-    p1Score++;
-    p1ScoreDisp.textContent = p1Score;
-    p2ScoreDisp.textContent = p2Score;
-    if (p1Score >= parseInt(maxScore.value)) {
-        p1Button.disabled = true;
-        p2Button.disabled = true;
-    }
-})
+addQrtr.addEventListener("click", (e) => {
+    count += 0.25;
+    dist += (0.25 / 4.5);
+    counter.textContent = `${count}`;
+    distance.textContent = Math.floor(dist * 100) / 100;
+});
 
-p2Button.addEventListener("click", (e) => {
-    p2Score++;
-    p1ScoreDisp.textContent = p1Score;
-    p2ScoreDisp.textContent = p2Score;
-    if (p2Score >= parseInt(maxScore.value)) {
-        p2Button.disabled = true;
-        p2Button.disabled = true;
-    }
-})
+addHalf.addEventListener("click", (e) => {
+    count += 0.5;
+    dist += (0.5 / 4.5);
+    counter.textContent = `${count}`;
+    distance.textContent = Math.floor(dist * 100) / 100;
+});
+
+addFull.addEventListener("click", (e) => {
+    count += 1;
+    dist += (1 / 4.5);
+    counter.textContent = `${count}`;
+    distance.textContent = Math.floor(dist * 100) / 100;
+});
+
+remQrtr.addEventListener("click", (e) => {
+    count -= 0.25;
+    dist -= (0.25 / 4.5);
+    counter.textContent = `${count}`;
+    distance.textContent = Math.floor(dist * 100) / 100;
+});
+
+remHalf.addEventListener("click", (e) => {
+    count -= 0.5;
+    dist -= (0.5 / 4.5);
+    counter.textContent = `${count}`;
+    distance.textContent = Math.floor(dist * 100) / 100;
+});
+
+remFull.addEventListener("click", (e) => {
+    count -= 1;
+    dist -= (1 / 4.5);
+    counter.textContent = `${count}`;
+    distance.textContent = Math.floor(dist * 100) / 100;
+});
 
 reset.addEventListener("click", (e) => {
-    p1Score = 0;
-    p2Score = 0;
-    p1ScoreDisp.textContent = p1Score;
-    p2ScoreDisp.textContent = p2Score;
-    p1Button.disabled = false;
-    p2Button.disabled = false;
+    count = 0;
+    dist = 0;
+    counter.textContent = `${count}`;
+    distance.textContent = dist;
 })
